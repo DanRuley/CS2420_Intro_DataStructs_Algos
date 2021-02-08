@@ -1,0 +1,9 @@
+		GrammarParserAndPhraseGenerator h = new GrammarParserAndPhraseGenerator(new File("src/comprehensive/assignment_extension_request.g"));
+		Random r = new Random();
+		
+		for (int i = 0; i < 1000000; i++) {
+		h.parseRule(h.gMap.get("<start>").get(r.nextInt(h.gMap.get("<start>").size())));
+		System.out.println(h.fetchString());
+		h.reset();
+		}
+	}

@@ -1,0 +1,82 @@
+package assign09;
+
+import java.text.DecimalFormat;
+
+/**
+ * Student class with a "Medium" hashcode. Results in more collisions than the
+ * Good code, but less than the bad code.
+ * 
+ * @authors Subhan Gulistani, Dan Ruley
+ * @version March 2019
+ */
+public class StudentMediumHash {
+
+	private int uid;
+	private String firstName;
+	private String lastName;
+
+	/**
+	 * Creates a new student with the specified uid, firstName, and lastName.
+	 * 
+	 * @param uid
+	 * @param firstName
+	 * @param lastName
+	 */
+	public StudentMediumHash(int uid, String firstName, String lastName) {
+		this.uid = uid;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	/**
+	 * @return the UID for this student object
+	 */
+	public long getUid() {
+		return this.uid;
+	}
+
+	/**
+	 * @return the first name for this student object
+	 */
+
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+	/**
+	 * @return the last name for this student object
+	 */
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	/**
+	 * @return true if this student and 'other' have the same UID, first name, and
+	 *         last name; false otherwise
+	 */
+	public boolean equals(Object other) {
+		// change to StudentMediumHash and StudentGoodHash for two new classes
+		if (!(other instanceof StudentMediumHash))
+			return false;
+
+		StudentMediumHash rhs = (StudentMediumHash) other;
+
+		return this.uid == rhs.uid && this.firstName.equals(rhs.firstName) && this.lastName.equals(rhs.lastName);
+	}
+
+	/**
+	 * @return a textual representation of this student
+	 */
+	public String toString() {
+		DecimalFormat formatter = new DecimalFormat("0000000");
+		return firstName + " " + lastName + " (u" + formatter.format(uid) + ")";
+	}
+
+	/**
+	 * Returns the length of the first and last name. Results in a significant
+	 * amount of collisions, but far fewer than the Bad student code.
+	 */
+	public int hashCode() {
+		return firstName.length() + lastName.length();
+	}
+}
